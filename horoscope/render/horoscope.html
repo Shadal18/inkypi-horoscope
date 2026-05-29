@@ -1,23 +1,21 @@
 {% extends "plugin.html" %} {% block content %}
-<div class="horoscope-screen">
-  <div class="topbar">
-    <div class="sign-group">
-      <div class="sign-symbol">{{ zodiac_symbol }}</div>
-      <div>
-        <div class="sign-label">Daily Horoscope</div>
+<div class="screen">
+  <div class="header">
+    <div class="sign-wrap">
+      <div class="sign-icon">{{ zodiac_symbol }}</div>
+      <div class="sign-meta">
+        <div class="eyebrow">Daily Horoscope</div>
         <div class="sign-name">{{ zodiac }}</div>
       </div>
     </div>
 
-    <div class="date-badge">{{ date }}</div>
+    <div class="date-pill">{{ date }}</div>
   </div>
 
-  <div class="horoscope-card">
-    <div class="card-accent"></div>
-
-    <div class="horoscope-text">
+  <div class="message-card">
+    <div class="message-inner">
       {% for line in horoscope_lines %}
-      <div class="horoscope-line">{{ line }}</div>
+      <div class="message-line">{{ line }}</div>
       {% endfor %}
     </div>
   </div>
