@@ -14,6 +14,7 @@
     <option value="aquarius">Aquarius</option>
     <option value="pisces">Pisces</option>
   </select>
+  <small> Select the zodiac sign to display. The Horoscope API requires a zodiac parameter for each request. </small>
 </div>
 
 <hr style="border: 0; border-top: 1px solid rgba(0, 0, 0, 0.12); margin: 24px 0 18px" />
@@ -49,34 +50,28 @@
     >
       github.com/shadal18/inkypi-horoscope
     </a>
+
     <div style="font-size: 0.9rem; color: #666">Setup help, updates, release notes, and source code.</div>
   </div>
 </div>
 
-<div class="form-group" style="margin-bottom: 20px">
-  <div
-    style="
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #555;
-      margin-bottom: 10px;
-    "
-  >
-    Support Development
-  </div>
+<style>
+  .floatingchat-container-wrap,
+  .floating-chat-kofi-popup-iframe {
+    left: unset !important;
+    right: 16px !important;
+  }
 
-  <div style="background: #f8f9fa; border: 1px solid #dcdfe3; border-radius: 10px; padding: 14px 16px">
-    <div style="font-size: 0.9rem; color: #666; margin-bottom: 12px">
-      If you find this plugin useful, you can support development on Ko-fi.
-    </div>
-    <a href="https://ko-fi.com/YOURNAME" target="_blank" rel="noopener noreferrer" class="button button-primary">
-      Support on Ko-fi
-    </a>
-  </div>
-</div>
+  .floatingchat-container-wrap {
+    bottom: 14px !important;
+  }
 
+  .floating-chat-kofi-popup-iframe {
+    bottom: 76px !important;
+  }
+</style>
+
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const zodiacInput = document.getElementById("zodiac")
@@ -85,6 +80,15 @@
       if (zodiacInput) zodiacInput.value = pluginSettings.zodiac || "aries"
     } else {
       if (zodiacInput) zodiacInput.value = "aries"
+    }
+
+    if (typeof kofiWidgetOverlay !== "undefined") {
+      kofiWidgetOverlay.draw("shadal", {
+        type: "floating-chat",
+        "floating-chat.donateButton.text": "I ❤️ Coffee",
+        "floating-chat.donateButton.background-color": "#00b9fe",
+        "floating-chat.donateButton.text-color": "#fff",
+      })
     }
   })
 </script>
