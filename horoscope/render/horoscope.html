@@ -1,21 +1,21 @@
 {% extends "plugin.html" %} {% block content %}
-<div class="screen">
-  <div class="header">
-    <div class="sign-wrap">
-      <div class="sign-icon">{{ zodiac_symbol }}</div>
-      <div class="sign-meta">
+<div class="horoscope-canvas">
+  <div class="hero-band">
+    <div class="hero-left">
+      <div class="sign-badge">{{ zodiac_symbol }}</div>
+      <div class="hero-copy">
         <div class="eyebrow">Daily Horoscope</div>
         <div class="sign-name">{{ zodiac }}</div>
       </div>
     </div>
 
-    <div class="date-pill">{{ date }}</div>
+    <div class="date-chip">{{ date }}</div>
   </div>
 
-  <div class="message-card">
-    <div class="message-inner">
+  <div class="reading-band">
+    <div class="reading-inner">
       {% for line in horoscope_lines %}
-      <div class="message-line">{{ line }}</div>
+      <div class="reading-line">{{ line }}</div>
       {% endfor %}
     </div>
   </div>
