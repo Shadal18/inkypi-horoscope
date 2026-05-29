@@ -1,0 +1,6 @@
+{
+  "display_name": "Horoscope",
+  "id": "horoscope",
+  "class": "Horoscope",
+  "repository": "https://github.com/shadal18/inkypi-horoscope"
+}

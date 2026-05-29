@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.horoscope-screen {
+  height: 100vh;
+  padding: 34px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-color, #f5f1e8);
+  color: var(--text-color, #1e1e1e);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.sign-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sign-symbol {
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.sign-label {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  margin-bottom: 4px;
+}
+
+.sign-name {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.date-badge {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+.horoscope-card {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 28px;
+  padding: 28px 28px 28px 34px;
+  background: rgba(255, 255, 255, 0.45);
+  overflow: hidden;
+}
+
+.card-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.horoscope-text {
+  width: 100%;
+}
+
+.horoscope-line {
+  font-size: 28px;
+  line-height: 1.28;
+  font-weight: 650;
+  margin-bottom: 10px;
+}
+
+.horoscope-line:last-child {
+  margin-bottom: 0;
+}
