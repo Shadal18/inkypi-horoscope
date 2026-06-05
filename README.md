@@ -2,6 +2,8 @@
 
 An InkyPi plugin that shows a daily horoscope for a selected zodiac sign.
 
+_Daily Horoscope_ is a plugin for [InkyPi](https://github.com/fatihak/InkyPi) that shows the latest daily horoscope for your chosen zodiac sign on your display.
+
 ## Install
 
 Use the InkyPi plugin installer with the plugin ID and this repository URL, following the install pattern shown by the official InkyPi plugin template.
