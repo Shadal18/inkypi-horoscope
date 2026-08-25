@@ -1,337 +1,153 @@
 <style>
   :root {
-    --ho-bg: var(--background-color, var(--color-background, #f5f7fb));
-    --ho-bg-soft: var(--card-background-secondary, var(--color-surface-2, #eef2f7));
-    --ho-panel: var(--card-background, var(--color-surface, #ffffff));
-    --ho-panel-2: var(--card-background-hover, var(--color-surface-2, #f8fafc));
-    --ho-border: var(--border-color, rgba(15, 23, 42, 0.12));
-    --ho-text: var(--text-primary, var(--color-text, #0f172a));
-    --ho-text-muted: var(--text-secondary, var(--color-text-secondary, #475569));
-    --ho-text-soft: var(--text-muted, #64748b);
-    --ho-primary: var(--accent-color, #14b8a6);
-    --ho-info: var(--info-color, #3b82f6);
-    --ho-shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
-    --ho-radius-xl: 18px;
-    --ho-radius-lg: 14px;
+    --ink-bg: var(--background-color, var(--color-background, #f5f7fb));
+    --ink-bg-soft: var(--card-background-secondary, var(--color-surface-2, #eef2f7));
+    --ink-panel: var(--card-background, var(--color-surface, #ffffff));
+    --ink-panel-2: var(--card-background-hover, var(--color-surface-2, #f8fafc));
+    --ink-border: var(--border-color, rgba(15, 23, 42, 0.12));
+    --ink-text: var(--text-primary, var(--color-text, #0f172a));
+    --ink-text-muted: var(--text-secondary, var(--color-text-secondary, #475569));
+    --ink-text-soft: var(--text-muted, #64748b);
+    --ink-primary: var(--accent-color, #14b8a6);
+    --ink-info: var(--info-color, #3b82f6);
+    --ink-shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --ink-radius-xl: 18px;
   }
 
   html.dark,
   body.dark,
   [data-theme="dark"],
   html[data-theme="dark"] {
-    --ho-bg: var(--background-color, var(--color-background, #0f172a));
-    --ho-bg-soft: var(--card-background-secondary, var(--color-surface-2, #162033));
-    --ho-panel: var(--card-background, var(--color-surface, #111827));
-    --ho-panel-2: var(--card-background-hover, var(--color-surface-2, #172033));
-    --ho-border: var(--border-color, rgba(255, 255, 255, 0.1));
-    --ho-text: var(--text-primary, var(--color-text, #f8fafc));
-    --ho-text-muted: var(--text-secondary, var(--color-text-secondary, #cbd5e1));
-    --ho-text-soft: var(--text-muted, #94a3b8);
-    --ho-shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.22);
+    --ink-bg: var(--background-color, var(--color-background, #0f172a));
+    --ink-bg-soft: var(--card-background-secondary, var(--color-surface-2, #162033));
+    --ink-panel: var(--card-background, var(--color-surface, #111827));
+    --ink-panel-2: var(--card-background-hover, var(--color-surface-2, #172033));
+    --ink-border: var(--border-color, rgba(255, 255, 255, 0.1));
+    --ink-text: var(--text-primary, var(--color-text, #f8fafc));
+    --ink-text-muted: var(--text-secondary, var(--color-text-secondary, #cbd5e1));
+    --ink-text-soft: var(--text-muted, #94a3b8);
+    --ink-shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.22);
   }
 
-  .horoscope-settings-container {
-    width: 100%;
-    box-sizing: border-box;
-    color: var(--ho-text);
+  .horoscope-settings-container { width: 100%; box-sizing: border-box; color: var(--ink-text); }
+  .ink-shell { display: grid; gap: 18px; margin-top: 8px; }
+
+  .ink-hero, .ink-section, .ink-hint-card, .ink-link-card {
+    overflow: hidden; border: 1px solid var(--ink-border); border-radius: var(--ink-radius-xl);
+    background: linear-gradient(180deg, var(--ink-panel), var(--ink-panel-2)); box-shadow: var(--ink-shadow-sm);
   }
 
-  .ho-shell {
-    display: grid;
-    gap: 18px;
-    margin-top: 8px;
-  }
-
-  .ho-hero {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--ho-radius-xl);
-    border: 1px solid var(--ho-border);
+  .ink-hero {
+    position: relative; padding: 22px;
     background:
-      radial-gradient(circle at top right, color-mix(in srgb, var(--ho-primary) 16%, transparent), transparent 34%),
-      radial-gradient(circle at bottom left, color-mix(in srgb, var(--ho-info) 12%, transparent), transparent 30%),
-      linear-gradient(180deg, color-mix(in srgb, var(--ho-panel) 92%, var(--ho-bg-soft) 8%), var(--ho-panel-2));
-    box-shadow: var(--ho-shadow-sm);
-    padding: 22px 22px 18px;
+      radial-gradient(circle at top right, color-mix(in srgb, var(--ink-primary) 16%, transparent), transparent 34%),
+      radial-gradient(circle at bottom left, color-mix(in srgb, var(--ink-info) 12%, transparent), transparent 30%),
+      linear-gradient(180deg, color-mix(in srgb, var(--ink-panel) 92%, var(--ink-bg-soft) 8%), var(--ink-panel-2));
   }
 
-  .ho-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--ho-primary) 14%, transparent);
-    color: var(--ho-primary);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    border: 1px solid color-mix(in srgb, var(--ho-primary) 22%, transparent);
+  .ink-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; margin-bottom: 10px;
+    border: 1px solid color-mix(in srgb, var(--ink-primary) 22%, transparent); border-radius: 999px;
+    background: color-mix(in srgb, var(--ink-primary) 14%, transparent); color: var(--ink-primary);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   }
 
-  .ho-hero h2 {
-    margin: 0;
-    color: var(--ho-text);
-    font-size: 28px;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+  .ink-hero h2 { margin: 0; color: var(--ink-text); font-size: 28px; line-height: 1.08; letter-spacing: -0.03em; }
+  .ink-hero p { max-width: 68ch; margin: 10px 0 0; color: var(--ink-text-muted); font-size: 14px; line-height: 1.6; }
+
+  .ink-hint-card, .ink-link-card { padding: 16px 20px; }
+  .ink-hint-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+  .ink-hint-icon, .ink-section-icon, .ink-link-icon {
+    display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center;
+    border: 1px solid var(--ink-border); border-radius: 12px;
+    background: color-mix(in srgb, var(--ink-bg-soft) 65%, var(--ink-panel) 35%); font-size: 18px;
   }
 
-  .ho-hero p {
-    margin: 10px 0 0;
-    max-width: 68ch;
-    color: var(--ho-text-muted);
-    font-size: 14px;
-    line-height: 1.6;
+  .ink-hint-icon {
+    width: 30px; height: 30px; border-color: color-mix(in srgb, var(--ink-primary) 28%, transparent);
+    border-radius: 9px; background: color-mix(in srgb, var(--ink-primary) 14%, transparent); font-size: 16px;
   }
 
-  .ho-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 18px;
-  }
+  .ink-hint-title { margin: 0; color: var(--ink-text); font-size: 14px; font-weight: 700; }
+  .ink-hint-copy, .ink-link-help { margin: 0; color: var(--ink-text-muted); font-size: 12px; line-height: 1.6; }
 
-  .ho-metric {
-    border: 1px solid var(--ho-border);
-    border-radius: var(--ho-radius-lg);
-    background: color-mix(in srgb, var(--ho-panel) 92%, var(--ho-bg) 8%);
-    padding: 14px 14px 12px;
-    min-width: 0;
-    box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
-  }
+  .ink-section-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-bottom: 1px solid var(--ink-border); }
+  .ink-section-icon { width: 38px; height: 38px; }
+  .ink-section-copy { flex: 1; min-width: 0; }
+  .ink-section-title { margin: 0; color: var(--ink-text); font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .ink-section-subtitle { margin-top: 4px; color: var(--ink-text-muted); font-size: 13px; }
+  .ink-section-body { padding: 18px 20px 20px; }
 
-  .ho-metric-label {
-    color: var(--ho-text-soft);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-  }
+  .ink-grid { display: grid; gap: 16px; }
+  .ink-field { display: grid; min-width: 0; gap: 8px; }
+  .ink-label { color: var(--ink-text-soft); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 
-  .ho-metric-value {
-    color: var(--ho-text);
-    font-size: 28px;
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-  }
-
-  .ho-metric-sub {
-    color: var(--ho-text-muted);
-    font-size: 12px;
-    margin-top: 6px;
-  }
-
-  .ho-section,
-  .ho-link-card {
-    border: 1px solid var(--ho-border);
-    border-radius: var(--ho-radius-xl);
-    background: linear-gradient(180deg, var(--ho-panel), var(--ho-panel-2));
-    box-shadow: var(--ho-shadow-sm);
-    overflow: hidden;
-  }
-
-  .ho-section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 20px;
-    border-bottom: 1px solid var(--ho-border);
-  }
-
-  .ho-section-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-    border: 1px solid var(--ho-border);
-    background: color-mix(in srgb, var(--ho-bg-soft) 65%, var(--ho-panel) 35%);
-  }
-
-  .ho-section-copy {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .ho-section-title {
-    color: var(--ho-text);
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-  }
-
-  .ho-section-subtitle {
-    color: var(--ho-text-muted);
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .ho-section-body {
-    padding: 18px 20px 20px;
-  }
-
-  .ho-grid {
-    display: grid;
-    gap: 16px;
-  }
-
-  .ho-field {
-    display: grid;
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .ho-label {
-    color: var(--ho-text-soft);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .ho-input,
-  .horoscope-settings-container select,
-  .horoscope-settings-container input[type="text"] {
-    width: 100%;
-    min-height: 46px;
-    padding: 0 14px;
-    border-radius: 12px;
-    border: 1px solid var(--ho-border);
-    background: var(--ho-panel);
-    color: var(--ho-text);
-    outline: none;
-    box-sizing: border-box;
+  .ink-input, .horoscope-settings-container select {
+    box-sizing: border-box; width: 100%; min-height: 46px; padding: 0 14px; border: 1px solid var(--ink-border);
+    border-radius: 12px; outline: none; background: var(--ink-panel); color: var(--ink-text);
     box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent);
   }
 
-  .ho-input:focus,
-  .horoscope-settings-container select:focus,
-  .horoscope-settings-container input:focus {
-    border-color: color-mix(in srgb, var(--ho-primary) 45%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--ho-primary) 14%, transparent);
+  .ink-input:focus, .horoscope-settings-container select:focus {
+    border-color: color-mix(in srgb, var(--ink-primary) 45%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink-primary) 14%, transparent);
   }
 
-  .ho-note {
-    margin: 0;
-    color: var(--ho-text-muted);
-    font-size: 12px;
-    line-height: 1.6;
-  }
+  .ink-note { margin: 0; color: var(--ink-text-muted); font-size: 12px; line-height: 1.6; }
 
-  .ho-link-card {
-    padding: 16px 20px;
-  }
+  .ink-link-card { display: flex; align-items: center; gap: 12px; }
+  .ink-link-icon { width: 38px; height: 38px; background: color-mix(in srgb, var(--ink-info) 13%, var(--ink-panel)); }
+  .ink-link-copy { min-width: 0; }
+  .ink-link-card a { display: inline-block; color: var(--ink-primary); font-weight: 700; text-decoration: none; word-break: break-word; }
+  .ink-link-card a:hover, .ink-link-card a:focus-visible { outline: none; text-decoration: underline; }
 
-  .ho-link-card a {
-    color: var(--ho-primary);
-    text-decoration: none;
-    font-weight: 700;
-    word-break: break-word;
-  }
-
-  .ho-link-card a:hover,
-  .ho-link-card a:focus-visible {
-    text-decoration: underline;
-    outline: none;
-  }
-
-  .ho-link-help {
-    margin-top: 8px;
-    color: var(--ho-text-muted);
-    font-size: 12px;
-    line-height: 1.6;
-  }
-
-  .floatingchat-container-wrap,
-  .floating-chat-kofi-popup-iframe {
-    left: unset !important;
-    right: 16px !important;
-  }
-
-  .floatingchat-container-wrap {
-    bottom: 14px !important;
-  }
-
-  .floating-chat-kofi-popup-iframe {
-    bottom: 76px !important;
-  }
-
-  @media (max-width: 920px) {
-    .ho-metrics {
-      grid-template-columns: 1fr;
-    }
-  }
+  .floatingchat-container-wrap, .floatingchat-container-wrap-mobi { right: 16px !important; bottom: 14px !important; left: unset !important; }
+  .floating-chat-kofi-popup-iframe { right: 16px !important; bottom: 76px !important; left: unset !important; }
 
   @media (max-width: 760px) {
-    .ho-hero {
-      padding: 18px;
-    }
-
-    .ho-hero h2 {
-      font-size: 22px;
-    }
-
-    .ho-section-header {
-      padding: 16px;
-    }
-
-    .ho-section-body,
-    .ho-link-card {
-      padding: 16px;
-    }
+    .ink-hero { padding: 18px; }
+    .ink-hero h2 { font-size: 22px; }
+    .ink-section-header, .ink-section-body, .ink-hint-card, .ink-link-card { padding: 16px; }
+    .ink-link-card { align-items: flex-start; }
   }
 </style>
 
 <div class="horoscope-settings-container">
-  <div class="ho-shell">
-    <section class="ho-hero">
-      <div class="ho-eyebrow">Horoscope</div>
-      <h2>Display a horoscope reading for a selected zodiac sign.</h2>
+  <div class="ink-shell">
+    <section class="ink-hero">
+      <div class="ink-eyebrow">✨ Horoscope</div>
+      <h2>Display a daily horoscope reading for a selected zodiac sign.</h2>
       <p>
-        Choose the zodiac sign you want to render on the display and keep the plugin repository link handy for setup
-        help, updates, release notes, and source code.
+        Choose the zodiac sign to render on your e-paper display. The plugin retrieves the current reading without any
+        local service connection or API-key configuration.
       </p>
-
-      <div class="ho-metrics">
-        <div class="ho-metric">
-          <div class="ho-metric-label">Source</div>
-          <div class="ho-metric-value">API</div>
-          <div class="ho-metric-sub">Horoscope response service</div>
-        </div>
-        <div class="ho-metric">
-          <div class="ho-metric-label">Required</div>
-          <div class="ho-metric-value">Sign</div>
-          <div class="ho-metric-sub">One zodiac parameter per request</div>
-        </div>
-        <div class="ho-metric">
-          <div class="ho-metric-label">Display</div>
-          <div class="ho-metric-value">Daily</div>
-          <div class="ho-metric-sub">Single sign reading output</div>
-        </div>
-      </div>
     </section>
 
-    <section class="ho-section">
-      <div class="ho-section-header">
-        <span class="ho-section-icon" aria-hidden="true">✨</span>
-        <div class="ho-section-copy">
-          <div class="ho-section-title">Sign selection</div>
-          <div class="ho-section-subtitle">Choose the zodiac sign to use for horoscope requests.</div>
+    <section class="ink-hint-card">
+      <div class="ink-hint-heading">
+        <span class="ink-hint-icon" aria-hidden="true">🌙</span>
+        <h3 class="ink-hint-title">No setup required</h3>
+      </div>
+      <p class="ink-hint-copy">
+        This plugin only needs a zodiac sign. Select it below and InkyPi will request the horoscope reading when the
+        display job runs.
+      </p>
+    </section>
+
+    <section class="ink-section">
+      <div class="ink-section-header">
+        <span class="ink-section-icon" aria-hidden="true">✨</span>
+        <div class="ink-section-copy">
+          <h3 class="ink-section-title">Sign selection</h3>
+          <div class="ink-section-subtitle">Choose the zodiac sign to use for horoscope requests.</div>
         </div>
       </div>
-      <div class="ho-section-body">
-        <div class="ho-grid">
-          <div class="ho-field">
-            <label for="zodiac" class="ho-label">Zodiac sign</label>
-            <select id="zodiac" name="zodiac" class="ho-input" required>
+      <div class="ink-section-body">
+        <div class="ink-grid">
+          <div class="ink-field">
+            <label for="zodiac" class="ink-label">Zodiac sign</label>
+            <select id="zodiac" name="zodiac" class="ink-input" required>
               <option value="aries">Aries</option>
               <option value="taurus">Taurus</option>
               <option value="gemini">Gemini</option>
@@ -345,43 +161,38 @@
               <option value="aquarius">Aquarius</option>
               <option value="pisces">Pisces</option>
             </select>
-            <p class="ho-note">
-              Select the zodiac sign to display. The Horoscope API requires a zodiac parameter for each request.
-            </p>
+            <p class="ink-note">Select the zodiac sign to display in the daily horoscope output.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ho-link-card">
-      <a href="https://github.com/shadal18/inkypi-horoscope" target="_blank" rel="noopener noreferrer">
-        github.com/shadal18/inkypi-horoscope
-      </a>
-      <div class="ho-link-help">Setup help, updates, release notes, and source code.</div>
+    <section class="ink-link-card">
+      <span class="ink-link-icon" aria-hidden="true">⌘</span>
+      <div class="ink-link-copy">
+        <a href="https://github.com/shadal18/inkypi-horoscope" target="_blank" rel="noopener noreferrer">github.com/shadal18/inkypi-horoscope</a>
+        <div class="ink-link-help">Setup help, updates, release notes, and source code.</div>
+      </div>
     </section>
   </div>
 </div>
 
 <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", function () {
     const zodiacInput = document.getElementById("zodiac")
-
-    if (
-      typeof loadPluginSettings !== "undefined" &&
-      loadPluginSettings &&
-      typeof pluginSettings !== "undefined" &&
-      pluginSettings
-    ) {
-      if (zodiacInput) zodiacInput.value = pluginSettings.zodiac || "aries"
-    } else {
-      if (zodiacInput) zodiacInput.value = "aries"
-    }
+    const value =
+      typeof loadPluginSettings !== "undefined" && loadPluginSettings && typeof pluginSettings !== "undefined" && pluginSettings
+        ? pluginSettings.zodiac || "aries"
+        : "aries"
+    if (zodiacInput) zodiacInput.value = value
 
     if (typeof kofiWidgetOverlay !== "undefined") {
+      const messages = ["I ♥ Coffee", "Tip Jar", "Fuel the Pixels", "Buy Me a Coffee", "Keep InkyPi Brewing"]
+      const message = messages[Math.floor(Math.random() * messages.length)]
       kofiWidgetOverlay.draw("shadal", {
         type: "floating-chat",
-        "floating-chat.donateButton.text": "I ❤️ Coffee",
+        "floating-chat.donateButton.text": message,
         "floating-chat.donateButton.background-color": "#00b9fe",
         "floating-chat.donateButton.text-color": "#fff",
       })
